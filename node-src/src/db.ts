@@ -1,5 +1,9 @@
-// db.js
-const mongoose = require('mongoose')
+import mongoose, { Document as MongooseDocument } from 'mongoose';
+
+// Extend mongoose.Document to include any additional properties
+export interface Document extends MongooseDocument {
+  [key: string]: any;
+}
 
 /**
  * In this example we are connecting to a local MongoDB instance. This instance is running via docker-compose in our GitHub Codespaces environment.
@@ -11,6 +15,8 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
-)
+);
 
-module.exports = mongoose
+export const model = mongoose.model.bind(mongoose);
+export const Schema = mongoose.Schema;
+export default mongoose;
