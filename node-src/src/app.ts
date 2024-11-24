@@ -4,7 +4,7 @@ import * as middleware from './middleware';
 import bodyParser from 'body-parser';
 
 // Set the port
-const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3080;
 
 // Boot the app
 const app: express.Application = express();
