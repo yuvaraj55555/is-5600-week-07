@@ -1,14 +1,17 @@
 {
   "name": "IS 5600 - Lab 7",
-  "waitFor": "onCreateCommand",
-  "updateContentCommand": "npm install",
   
   "dockerComposeFile": "docker-compose.yml",
-	"service": "node",
+	"service": "app",
+  "runServices": ["server", "db"],
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-
+  "postCreateCommand": {
+    "server": "cd node-src && npm install",
+    "app": "npm install"
+  },
   "postAttachCommand": {
-    "server": "npm start"
+    "app": "npm start",
+    "server": "cd node-src && npm run dev"
   },
   // Configure tool-specific properties.
   "customizations": {
