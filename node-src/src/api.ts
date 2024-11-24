@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import * as path from 'path';
 import * as Products from './products';
 import * as Orders from './orders';
-import { autoCatch } from './lib/auto-catch';
+import autoCatch from './lib/auto-catch';
 
 interface QueryParams {
   offset?: number;

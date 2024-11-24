@@ -1,5 +1,5 @@
 import express from 'express';
-import * as api from './api';
+import api from './api';
 import * as middleware from './middleware';
 import bodyParser from 'body-parser';
 
