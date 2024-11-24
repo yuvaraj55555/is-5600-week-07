@@ -12,7 +12,7 @@ services:
      PORT: 3080 
 
     # Overrides default command so things don't shut down after the process ends.
-    command: sh -c "npm run dev"
+    command: sh -c "npm install && npm run dev"
 
     # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
     network_mode: service:db
