@@ -1,9 +1,7 @@
-import { promises as fs } from 'fs';
-import * as path from 'path';
+
 import cuid from 'cuid';
 import * as db from './db';
 
-const productsFile = path.join(__dirname, 'data/full-products.json');
 
 interface ProductUrls {
   regular: string;
