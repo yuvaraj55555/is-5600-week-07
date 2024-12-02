@@ -5,8 +5,10 @@ import api from './api';
 import * as middleware from './middleware';
 import bodyParser from 'body-parser';
 import * as Products from './products';
+import * as Orders from './orders';
+import cuid from 'cuid';
 
-const productsFile = path.join(__dirname, 'data/full-products.json');
+const productsFile = path.join(__dirname, '../data/full-products.json');
 
 // Set the port
 const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3080;
@@ -37,8 +39,27 @@ Products.list().then((products) => {
         fs.readFile(productsFile, 'utf-8').then((data) => {
             const products = JSON.parse(data);
             products.forEach((product) => {
+                if (!product.price) {
+                    product.price = Math.floor(Math.random() * 100) + 1; // Set random price between 1 and 100
+                }
                 console.log('Creating product', product);
                 Products.create(product);
+            });
+        }).then(() => {
+            // Create 5 orders using the products
+            Products.list().then((products) => {
+                if (products.length > 0) {
+                    for (let i = 0; i < 5; i++) {
+                        const order = {
+                            _id: cuid(),
+                            buyerEmail: `buyer${i}@example.com`,
+                            products: [products[Math.floor(Math.random() * products.length)]._id],
+                            status: 'CREATED'
+                        };
+                        console.log('Creating order', order);
+                        Orders.create(order);
+                    }
+                }
             });
         });
     }

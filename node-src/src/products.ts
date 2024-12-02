@@ -35,6 +35,7 @@ interface ProductDocument extends db.Document {
   links: ProductLinks;
   user: ProductUser;
   tags: ProductTag[];
+  price?: number;
 }
 
 // Define our Product Model
@@ -62,6 +63,7 @@ const Product = db.model<ProductDocument>('Product', {
   tags: [{
     title: { type: String, required: true },
   }],
+  price: { type: Number, required: true }, 
 });
 
 interface ListOptions {
