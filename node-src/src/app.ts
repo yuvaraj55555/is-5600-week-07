@@ -4,7 +4,7 @@ import * as path from 'path';
 import api from './api';
 import * as middleware from './middleware';
 import bodyParser from 'body-parser';
-import Products from './products'
+import * as Products from './products';
 
 const productsFile = path.join(__dirname, 'data/full-products.json');
 
